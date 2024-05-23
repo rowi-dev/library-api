@@ -22,4 +22,13 @@ public class ExceptionHelper extends ResponseEntityExceptionHandler {
                 .build();
     }
 
+ @ExceptionHandler(CustomeException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CommonResponse<Object> handleInvalidInputException(CustomeException ex) {
+        log.error("NoRecodeFoundException: {}", ex.getMessage());
+        return CommonResponse.builder()
+                .message(ex.getMessage())
+                .build();
+    }
+
 }

@@ -1,9 +1,6 @@
 package com.rowi.library_api.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 
@@ -15,6 +12,10 @@ public class Borrower {
     private Long id;
     private String name;
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book book;
     private Boolean isBorrowed;
 
 }
