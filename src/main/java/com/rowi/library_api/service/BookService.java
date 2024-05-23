@@ -1,7 +1,9 @@
 package com.rowi.library_api.service;
 
 
+import com.rowi.library_api.dto.BookDto;
 import com.rowi.library_api.exception.NoRecodeFoundCustomeException;
+import com.rowi.library_api.map.BookMapper;
 import com.rowi.library_api.model.Book;
 import com.rowi.library_api.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,14 +21,23 @@ import static com.rowi.library_api.util.Constant.ErrorMsg.NO_RECODE_FOUND;
 public class BookService {
 
     private final BookRepository bookRepository;
-    public List<Book> getAllBooks(){
+
+    public List<Book> getAllBooks() {
         log.info("Get All Books : START");
         List<Book> books = bookRepository.findAll();
-        if(CollectionUtils.isEmpty(books)) {
+        if (CollectionUtils.isEmpty(books)) {
             log.info("No books found");
             throw new NoRecodeFoundCustomeException(NO_RECODE_FOUND);
         }
         log.info("{} Books found", books.size());
         return books;
+    }
+
+    public Book createBook(BookDto bookDto) {
+        log.info("Create Book: START");
+        // TODO: Validations need to done
+        Book book = BookMapper.toEntity(bookDto);
+        book = bookRepository.save(book);
+        return book;
     }
 }

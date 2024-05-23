@@ -12,4 +12,8 @@ public interface Constant {
     interface ErrorMsg{
         String NO_RECODE_FOUND = "No recode found";
     }
+
+    interface ResponseCode {
+        String SUCCESS = "200";
+    }
 }

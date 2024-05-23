@@ -1,6 +1,7 @@
 package com.rowi.library_api.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.rowi.library_api.model.Book;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
